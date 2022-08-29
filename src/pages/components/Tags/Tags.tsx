@@ -3,11 +3,13 @@ import useTags from "./Tags.biz";
 import useTagsStyle from "./Tags.style";
 import { Chip, Box } from "@mui/material";
 import { useChampionsContext } from "../../ChampionsSquad.context";
+import { FormattedMessage } from "react-intl";
+import tagsMessages from "./Tags.messages";
 
 const Tags = () => {
   const classes = useTagsStyle();
   const { tagsArray, onTagClick } = useTags();
-  const { tagFilter } = useChampionsContext();
+  const { tagFilter, myTeam, setMyTeam } = useChampionsContext();
 
   return (
     <Box marginX={7} marginBottom={7}>
@@ -30,6 +32,15 @@ const Tags = () => {
           )
         );
       })}
+      <Chip
+        label={<FormattedMessage {...tagsMessages.myTeam} />}
+        color={"primary"}
+        variant={"outlined"}
+        className={cls(classes.tag, {
+          [classes.selectedTag]: myTeam,
+        })}
+        onClick={() => setMyTeam(!myTeam)}
+      />
     </Box>
   );
 };

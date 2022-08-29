@@ -14,24 +14,28 @@ const data: Character[] = charactersJson as Character[];
 const CharactersTable: FC<ICharactersTableProps> = (props) => {
   const classes = useCharactersTableStyle(props);
   const { cellClickHandler } = useCharactersTable(props);
-  const { search } = useChampionsContext();
+  const { search, myTeam, selectedChampions } = useChampionsContext();
 
   return (
     <Box
       bgcolor={"White"}
-      height={520}
+      height={351}
       marginX={7}
       borderRadius={1}
       boxShadow={"0px 2px 4px 0px #00000040"}
     >
       <DataGrid
         className={classes.table}
-        rows={data.filter((item) =>
-          item.name.toLowerCase().includes(search.trim())
-        )}
+        rows={
+          myTeam
+            ? selectedChampions
+            : data.filter((item) =>
+                item.name.toLowerCase().includes(search.trim())
+              )
+        }
         columns={charactersColumns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
+        pageSize={3}
+        rowsPerPageOptions={[3]}
         checkboxSelection
         rowHeight={80}
         disableColumnMenu={true}

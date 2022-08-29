@@ -8,6 +8,8 @@ export type IChampionsContext = {
   setSearch: Dispatch<SetStateAction<string>>;
   tagFilter: string[];
   setTagFilter: Dispatch<SetStateAction<string[]>>;
+  myTeam: boolean;
+  setMyTeam: Dispatch<SetStateAction<boolean>>;
 };
 
 type IChampionsProvider = FC<{ value: IChampionsContext }>;
@@ -19,6 +21,8 @@ const ChampionsContext = createContext<IChampionsContext>({
   setSearch: () => undefined,
   tagFilter: [],
   setTagFilter: () => undefined,
+  myTeam: false,
+  setMyTeam: () => undefined,
 });
 
 export const useChampionsContext = () =>
