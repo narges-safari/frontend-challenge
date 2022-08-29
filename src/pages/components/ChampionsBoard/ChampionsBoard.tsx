@@ -1,18 +1,18 @@
-import { FC, useCallback, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { Avatar, Box, Typography } from "@mui/material/";
 import { FormattedMessage } from "react-intl";
 import championsBoardMessages from "./ChampionsBoard.messages";
 import useChampionsBoard from "./ChampionsBoard.biz";
-import { IChampionsBoardProps } from "./ChampionsBoard.types";
 import Ability from "../../../components/Ability";
 import useChampionsBoardStyle from "./ChampionsBoard.style";
 import { useChampionsContext } from "../../ChampionsSquad.context";
+import { initialAbilitiesArray } from "./ChampionsBoard.const";
 
-const ChampionsBoard: FC<IChampionsBoardProps> = (props) => {
+const ChampionsBoard = () => {
   const classes = useChampionsBoardStyle();
   const { selectedChampions } = useChampionsContext();
-  const { removeChampion, abilitiesAverage, abilitiesNameArray } =
-    useChampionsBoard(props);
+  const { removeChampion, abilitiesAverage, selectedAbilitiesArray } =
+    useChampionsBoard();
 
   const fullChampions = useCallback(
     (index: number) => (
@@ -58,11 +58,14 @@ const ChampionsBoard: FC<IChampionsBoardProps> = (props) => {
     []
   );
 
-  const abilities = useMemo(() => {
-    return abilitiesNameArray.map((name: string) => (
-      <Ability name={name} score={abilitiesAverage(name)} />
-    ));
-  }, [abilitiesNameArray, abilitiesAverage]);
+  const renderAbilities = useCallback(
+    (array: any) => {
+      return array.map((name: string) => (
+        <Ability name={name} score={abilitiesAverage(name)} />
+      ));
+    },
+    [abilitiesAverage]
+  );
 
   return (
     <Box
@@ -89,8 +92,19 @@ const ChampionsBoard: FC<IChampionsBoardProps> = (props) => {
           })}
       </Box>
       <Box display={"flex"} marginTop={3}>
-        {abilities}
+        {selectedAbilitiesArray?.length
+          ? renderAbilities(selectedAbilitiesArray)
+          : renderAbilities(initialAbilitiesArray)}
       </Box>
+      <Typography
+        position={"relative"}
+        marginTop={2}
+        right={135}
+        variant={"caption"}
+        color={"#666666"}
+      >
+        <FormattedMessage {...championsBoardMessages.averageNote} />
+      </Typography>
     </Box>
   );
 };

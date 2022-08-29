@@ -19,6 +19,10 @@ const championsBoardMessages = defineMessages({
     id: `${scope}.removeChampion`,
     defaultMessage: "remove",
   },
+  averageNote: {
+    id: `${scope}.averageNote`,
+    defaultMessage: "* Totals as average for squad",
+  },
 });
 
 export default championsBoardMessages;

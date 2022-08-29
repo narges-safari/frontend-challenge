@@ -10,7 +10,7 @@ const Ablity = ({ name, score }: { name: string; score: number }) => {
     >
       <Typography marginBottom={3}>{name}</Typography>
       <Typography variant={"h5"} fontWeight={700}>
-        {score}
+        {!!score ? score : "-"}
       </Typography>
     </Box>
   );

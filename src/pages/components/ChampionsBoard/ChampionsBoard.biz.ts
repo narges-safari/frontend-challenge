@@ -1,9 +1,8 @@
 import { useMemo } from "react";
 import { useChampionsContext } from "../../ChampionsSquad.context";
 import { Character, CharacterAbility } from "../../ChampionsSquad.types";
-import { IChampionsBoardProps } from "./ChampionsBoard.types";
 
-const useChampionsBoard = (props: IChampionsBoardProps) => {
+const useChampionsBoard = () => {
   const { selectedChampions, setSelectedChampions } = useChampionsContext();
 
   const removeChampion = (index: number) => {
@@ -31,19 +30,19 @@ const useChampionsBoard = (props: IChampionsBoardProps) => {
     return Number((sum / selectedChampionsCount).toFixed(2));
   };
 
-  const abilitiesNameArray = useMemo(() => {
-    let abilitiesNameArray = abilitiesArray.flatMap(
+  const selectedAbilitiesArray = useMemo(() => {
+    let selectedAbilitiesArray = abilitiesArray.flatMap(
       (_item) => _item.abilityName
     );
-    let uniqueSetName = new Set(abilitiesNameArray);
+    let uniqueSetName = new Set(selectedAbilitiesArray);
     return Array.from(uniqueSetName);
   }, [abilitiesArray]);
 
   return {
     removeChampion,
     abilitiesArray,
-    abilitiesNameArray,
     abilitiesAverage,
+    selectedAbilitiesArray,
   };
 };
 
