@@ -11,11 +11,18 @@ const useChampionsBoardStyle = createUseStyles({
       opacity: 0.6,
     },
   },
-  removeChampion: {
-    display: "none",
-    "&:hover": {
+  avatarContainer: {
+    position: "relative",
+    "&:hover p": {
       display: "block !important",
     },
+  },
+  removeChampion: {
+    position: "absolute",
+    zIndex: 1,
+    top: 36,
+    pointerEvents: "none",
+    display: "none",
   },
 });
 
