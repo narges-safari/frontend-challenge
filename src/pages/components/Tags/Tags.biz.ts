@@ -21,7 +21,7 @@ const useTags = () => {
       let newTagFilter = tagFilter.filter((item: string) => item !== tag);
       setTagFilter(newTagFilter);
     } else {
-      setTagFilter((_prev) => [..._prev, tag]);
+      setTagFilter((_prev: string[]) => [..._prev, tag]);
     }
   };
 
