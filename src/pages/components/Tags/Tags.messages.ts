@@ -7,6 +7,10 @@ const tagsMessages = defineMessages({
     id: `${scope}.myTeam`,
     defaultMessage: "My Team",
   },
+  clearAll: {
+    id: `${scope}.clearAll`,
+    defaultMessage: "Clear all",
+  },
 });
 
 export default tagsMessages;

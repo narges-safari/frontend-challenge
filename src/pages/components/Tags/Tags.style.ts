@@ -15,6 +15,16 @@ const useTagsStyle = createUseStyles({
       background: "#0e5db7 !important",
     },
   },
+  clearTag: {
+    margin: 4,
+    cursor: "pointer",
+    fontSize: 18,
+    color: "#999999",
+    border: 0,
+    "& span": {
+      textDecoration: "underline",
+    },
+  },
 });
 
 export default useTagsStyle;

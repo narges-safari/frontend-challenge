@@ -9,8 +9,14 @@ import tagsMessages from "./Tags.messages";
 const Tags = () => {
   const classes = useTagsStyle();
   const { tagsArray, onTagClick } = useTags();
-  const { tagFilter, myTeam, setMyTeam, setSelectionModel, selectedChampions } =
-    useChampionsContext();
+  const {
+    myTeam,
+    setMyTeam,
+    tagFilter,
+    setTagFilter,
+    selectedChampions,
+    setSelectionModel,
+  } = useChampionsContext();
 
   return (
     <Box marginX={7} marginBottom={7}>
@@ -46,6 +52,15 @@ const Tags = () => {
               setSelectionModel(selectedChampions.flatMap((_item) => _item.id));
             return !_prevMyTeam;
           });
+        }}
+      />
+      <Chip
+        variant={"outlined"}
+        className={classes.clearTag}
+        label={<FormattedMessage {...tagsMessages.clearAll} />}
+        onClick={() => {
+          setTagFilter([]);
+          setMyTeam(false);
         }}
       />
     </Box>
