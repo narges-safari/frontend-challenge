@@ -42,7 +42,13 @@ const ChampionsBoard = () => {
         </Typography>
       </Box>
     ),
-    [classes.avatar, classes.removeChampion, removeChampion, selectedChampions]
+    [
+      removeChampion,
+      classes.avatar,
+      selectedChampions,
+      classes.removeChampion,
+      classes.avatarContainer,
+    ]
   );
 
   const emptyChampion = useMemo(
@@ -56,6 +62,9 @@ const ChampionsBoard = () => {
         width={88}
         borderRadius={"50%"}
         border={"1px solid #217AFF"}
+        color={"#217AFF"}
+        fontWeight={700}
+        fontSize={18}
       >
         <FormattedMessage {...championsBoardMessages.questionMark} />
       </Box>
