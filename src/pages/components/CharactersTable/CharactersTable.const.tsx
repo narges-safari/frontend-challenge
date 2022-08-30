@@ -16,7 +16,7 @@ export const charactersColumns: GridColDef[] = [
     ),
     renderCell: (_item: GridRenderCellParams<any, Character, any>) => (
       <>
-        <Avatar src={_item.row.image} />
+        <Avatar style={{ border: "1px solid #217AFF" }} src={_item.row.image} />
         <Typography variant={"h6"} fontWeight={700} marginLeft={3}>
           {_item.row.name}
         </Typography>
