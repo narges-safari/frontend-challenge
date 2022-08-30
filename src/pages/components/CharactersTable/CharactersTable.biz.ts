@@ -1,9 +1,15 @@
+import { GridSelectionModel } from "@mui/x-data-grid";
 import { useChampionsContext } from "../../ChampionsSquad.context";
 import { Character } from "../../ChampionsSquad.types";
 import { ICharactersTableProps } from "./CharactersTable.types";
 
 const useCharactersTable = (props: ICharactersTableProps) => {
-  const { selectedChampions, setSelectedChampions } = useChampionsContext();
+  const { selectedChampions, setSelectedChampions, setSelectionModel } =
+    useChampionsContext();
+
+  const selectionModelHandler = (id: GridSelectionModel) => {
+    setSelectionModel(id);
+  };
 
   const cellClickHandler = (row: Character) => {
     let foundSelectedChampion = selectedChampions.find(
@@ -21,6 +27,7 @@ const useCharactersTable = (props: ICharactersTableProps) => {
 
   return {
     cellClickHandler,
+    selectionModelHandler,
   };
 };
 

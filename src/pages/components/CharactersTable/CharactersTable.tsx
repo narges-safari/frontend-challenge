@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Box } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridSelectionModel } from "@mui/x-data-grid";
 import useCharactersTableStyle from "./CharactersTable.style";
 import useCharactersTable from "./CharactersTable.biz";
 import { ICharactersTableProps } from "./CharactersTable.types";
@@ -13,8 +13,9 @@ const data: Character[] = charactersJson as Character[];
 
 const CharactersTable: FC<ICharactersTableProps> = (props) => {
   const classes = useCharactersTableStyle(props);
-  const { cellClickHandler } = useCharactersTable(props);
-  const { search, myTeam, selectedChampions } = useChampionsContext();
+  const { cellClickHandler, selectionModelHandler } = useCharactersTable(props);
+  const { search, myTeam, selectionModel, selectedChampions } =
+    useChampionsContext();
 
   return (
     <Box
@@ -40,6 +41,10 @@ const CharactersTable: FC<ICharactersTableProps> = (props) => {
         rowHeight={80}
         disableColumnMenu={true}
         onCellClick={(_cell) => cellClickHandler(_cell.row)}
+        onSelectionModelChange={(id: GridSelectionModel) =>
+          selectionModelHandler(id)
+        }
+        selectionModel={selectionModel}
       />
     </Box>
   );

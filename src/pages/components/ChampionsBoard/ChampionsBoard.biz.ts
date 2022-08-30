@@ -3,17 +3,21 @@ import { useChampionsContext } from "../../ChampionsSquad.context";
 import { Character, CharacterAbility } from "../../ChampionsSquad.types";
 
 const useChampionsBoard = () => {
-  const { selectedChampions, setSelectedChampions } = useChampionsContext();
+  const { selectedChampions, setSelectedChampions, setSelectionModel } =
+    useChampionsContext();
 
   const removeChampion = (index: number) => {
     let newSelectedChampions = selectedChampions.filter(
       (item: Character) => item.id !== selectedChampions[index].id
     );
     setSelectedChampions(newSelectedChampions);
+    setSelectionModel(
+      newSelectedChampions.flatMap((_item: Character) => _item.id)
+    );
   };
 
   const abilitiesArray = useMemo(
-    () => selectedChampions.flatMap((item: Character) => item.abilities),
+    () => selectedChampions.flatMap((_item: Character) => _item.abilities),
     [selectedChampions]
   );
 

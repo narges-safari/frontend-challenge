@@ -1,3 +1,4 @@
+import { GridSelectionModel } from "@mui/x-data-grid";
 import { FC, Dispatch, useContext, createContext, SetStateAction } from "react";
 import { Character } from "./ChampionsSquad.types";
 
@@ -10,6 +11,8 @@ export type IChampionsContext = {
   setTagFilter: Dispatch<SetStateAction<string[]>>;
   myTeam: boolean;
   setMyTeam: Dispatch<SetStateAction<boolean>>;
+  selectionModel: GridSelectionModel;
+  setSelectionModel: Dispatch<SetStateAction<GridSelectionModel>>;
 };
 
 type IChampionsProvider = FC<{ value: IChampionsContext }>;
@@ -23,6 +26,8 @@ const ChampionsContext = createContext<IChampionsContext>({
   setTagFilter: () => undefined,
   myTeam: false,
   setMyTeam: () => undefined,
+  selectionModel: [],
+  setSelectionModel: () => undefined,
 });
 
 export const useChampionsContext = () =>
