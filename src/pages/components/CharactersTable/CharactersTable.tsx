@@ -8,7 +8,7 @@ import { useChampionsContext } from "../../ChampionsSquad.context";
 const CharactersTable = () => {
   const classes = useCharactersTableStyle();
   const { selectionModel } = useChampionsContext();
-  const { tableRow, cellClickHandler, selectionModelHandler } =
+  const { charactersData, cellClickHandler, selectionModelHandler } =
     useCharactersTable();
 
   return (
@@ -21,7 +21,7 @@ const CharactersTable = () => {
     >
       <DataGrid
         className={classes.table}
-        rows={tableRow}
+        rows={charactersData}
         columns={charactersColumns}
         pageSize={6}
         rowsPerPageOptions={[6]}
