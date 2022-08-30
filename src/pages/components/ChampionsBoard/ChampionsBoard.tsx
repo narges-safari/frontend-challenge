@@ -83,7 +83,7 @@ const ChampionsBoard = () => {
 
   return (
     <Box
-      paddingTop={3}
+      paddingTop={14}
       paddingBottom={4}
       display={"flex"}
       alignItems={"center"}
