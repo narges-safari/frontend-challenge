@@ -38,11 +38,14 @@ const useCharactersTable = () => {
     [selectedChampions, setSelectedChampions]
   );
 
+  // Create a regex where check if all tags are included
   const filterTagRegex = useMemo(() => {
     let _preparedRegexString = tagFilter.join(")(?=.*");
     return new RegExp(`(?=.*${_preparedRegexString})`, "gi");
   }, [tagFilter]);
 
+  // This is a callbackfunction which flatMap all tags and join them as knittedTag
+  // and return a boolean based on the regex
   const isTagIncluded = useCallback(
     (tagsItem: CharacterTag[]) => {
       if (!tagsItem) return false;
@@ -87,11 +90,11 @@ const useCharactersTable = () => {
   return {
     filterData,
     updateMyTeam,
+    isShowSnackbar,
     charactersData,
     cellClickHandler,
-    isShowSnackbar,
-    selectionModelHandler,
     setIsShowSnackbar,
+    selectionModelHandler,
   };
 };
 

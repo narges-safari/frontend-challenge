@@ -96,6 +96,8 @@ const ChampionsBoard = () => {
           <FormattedMessage {...championsBoardMessages.NoChapmsTitle} />
         )}
       </Typography>
+      {/* Map an array with 6 element and fill them with selected characters 
+      if the length of charcters are less than 6, render an emtpy place*/}
       <Box display={"flex"} paddingY={2}>
         {Array(6)
           .fill("")
