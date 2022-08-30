@@ -30,6 +30,7 @@ const Tags = () => {
                   (item: string) => item === tag
                 ),
               })}
+              disabled={myTeam}
               key={index}
               label={tag}
               color={"primary"}
