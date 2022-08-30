@@ -1,11 +1,19 @@
 import { GridSelectionModel } from "@mui/x-data-grid";
+import { useMemo } from "react";
 import { useChampionsContext } from "../../ChampionsSquad.context";
 import { Character } from "../../ChampionsSquad.types";
-import { ICharactersTableProps } from "./CharactersTable.types";
+import charactersJson from "../../../assets/data/characters.json";
 
-const useCharactersTable = (props: ICharactersTableProps) => {
-  const { selectedChampions, setSelectedChampions, setSelectionModel } =
-    useChampionsContext();
+const data: Character[] = charactersJson as Character[];
+
+const useCharactersTable = () => {
+  const {
+    myTeam,
+    search,
+    selectedChampions,
+    setSelectedChampions,
+    setSelectionModel,
+  } = useChampionsContext();
 
   const selectionModelHandler = (id: GridSelectionModel) => {
     setSelectionModel(id);
@@ -25,7 +33,18 @@ const useCharactersTable = (props: ICharactersTableProps) => {
     }
   };
 
+  const tableRow = useMemo(
+    () =>
+      myTeam
+        ? selectedChampions
+        : data.filter((item) =>
+            item.name.toLowerCase().includes(search.trim())
+          ),
+    [myTeam, search, selectedChampions]
+  );
+
   return {
+    tableRow,
     cellClickHandler,
     selectionModelHandler,
   };

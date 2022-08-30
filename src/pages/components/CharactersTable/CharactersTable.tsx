@@ -1,21 +1,15 @@
-import { FC } from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridSelectionModel } from "@mui/x-data-grid";
 import useCharactersTableStyle from "./CharactersTable.style";
 import useCharactersTable from "./CharactersTable.biz";
-import { ICharactersTableProps } from "./CharactersTable.types";
-import charactersJson from "../../../assets/data/characters.json";
-import type { Character } from "../../ChampionsSquad.types";
 import { charactersColumns } from "./CharactersTable.const";
 import { useChampionsContext } from "../../ChampionsSquad.context";
 
-const data: Character[] = charactersJson as Character[];
-
-const CharactersTable: FC<ICharactersTableProps> = (props) => {
-  const classes = useCharactersTableStyle(props);
-  const { cellClickHandler, selectionModelHandler } = useCharactersTable(props);
-  const { search, myTeam, selectionModel, selectedChampions } =
-    useChampionsContext();
+const CharactersTable = () => {
+  const classes = useCharactersTableStyle();
+  const { selectionModel } = useChampionsContext();
+  const { tableRow, cellClickHandler, selectionModelHandler } =
+    useCharactersTable();
 
   return (
     <Box
@@ -27,13 +21,7 @@ const CharactersTable: FC<ICharactersTableProps> = (props) => {
     >
       <DataGrid
         className={classes.table}
-        rows={
-          myTeam
-            ? selectedChampions
-            : data.filter((item) =>
-                item.name.toLowerCase().includes(search.trim())
-              )
-        }
+        rows={tableRow}
         columns={charactersColumns}
         pageSize={6}
         rowsPerPageOptions={[6]}
