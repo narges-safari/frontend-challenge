@@ -31,7 +31,7 @@ const useCharactersTable = () => {
           (item: Character) => item.id !== foundSelectedChampion?.id
         );
         setSelectedChampions(newSelectedChampions);
-      } else {
+      } else if (selectedChampions.length < 6) {
         setSelectedChampions((_prev: Character[]) => [..._prev, row]);
       }
     },
