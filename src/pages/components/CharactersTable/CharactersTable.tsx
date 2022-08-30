@@ -1,15 +1,23 @@
 import { Box } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
 import { DataGrid, GridSelectionModel } from "@mui/x-data-grid";
-import useCharactersTableStyle from "./CharactersTable.style";
+import { FormattedMessage } from "react-intl";
+import { useChampionsContext } from "../../ChampionsSquad.context";
 import useCharactersTable from "./CharactersTable.biz";
 import { charactersColumns } from "./CharactersTable.const";
-import { useChampionsContext } from "../../ChampionsSquad.context";
+import charactersTableMessages from "./CharactersTable.messages";
+import useCharactersTableStyle from "./CharactersTable.style";
 
 const CharactersTable = () => {
   const classes = useCharactersTableStyle();
   const { selectionModel } = useChampionsContext();
-  const { charactersData, cellClickHandler, selectionModelHandler } =
-    useCharactersTable();
+  const {
+    charactersData,
+    cellClickHandler,
+    isShowSnackbar,
+    setIsShowSnackbar,
+    selectionModelHandler,
+  } = useCharactersTable();
 
   return (
     <Box
@@ -29,10 +37,20 @@ const CharactersTable = () => {
         rowHeight={80}
         disableColumnMenu={true}
         onCellClick={(_cell) => cellClickHandler(_cell.row)}
-        onSelectionModelChange={(id: GridSelectionModel) =>
-          selectionModelHandler(id)
-        }
+        onSelectionModelChange={(id: GridSelectionModel) => {
+          if (id.length <= 6) {
+            selectionModelHandler(id);
+          } else {
+            setIsShowSnackbar(true);
+          }
+        }}
         selectionModel={selectionModel}
+      />
+      <Snackbar
+        open={isShowSnackbar}
+        autoHideDuration={6000}
+        message={<FormattedMessage {...charactersTableMessages.snackbar} />}
+        onClose={() => setIsShowSnackbar(false)}
       />
     </Box>
   );

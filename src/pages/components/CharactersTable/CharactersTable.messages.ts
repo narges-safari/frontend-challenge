@@ -31,6 +31,10 @@ const charactersTableMessages = defineMessages({
     id: `${scope}.energy`,
     defaultMessage: "Energy",
   },
+  snackbar: {
+    id: `${scope}.snackbar`,
+    defaultMessage: "You can't add more than 6 items.",
+  },
 });
 
 export default charactersTableMessages;
