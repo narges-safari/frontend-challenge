@@ -8,7 +8,7 @@ export const charactersColumns: GridColDef[] = [
   {
     field: "name",
     sortable: false,
-    width: 250,
+    width: 260,
     renderHeader: () => (
       <Typography variant={"h6"} fontWeight={700}>
         <FormattedMessage {...charactersTableMessages.characters} />
@@ -26,7 +26,7 @@ export const charactersColumns: GridColDef[] = [
   {
     field: "tags",
     sortable: false,
-    width: 280,
+    width: 290,
     renderHeader: () => (
       <Typography variant={"h6"} fontWeight={700}>
         <FormattedMessage {...charactersTableMessages.tags} />
