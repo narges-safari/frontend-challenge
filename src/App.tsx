@@ -1,23 +1,16 @@
-import logo from './logo.svg'
-import './App.css'
-import jsonData from './data/characters.json'
-import type { Character } from './types'
-const data: Character[] = jsonData as Character[]
+import { Fragment } from "react";
+import ChampionsSquad from "./pages";
+import { IntlProvider } from "react-intl";
+// react-intel enables multi language
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
+    <Fragment>
+      <IntlProvider defaultLocale={"en"} locale={"en"}>
+        <ChampionsSquad />
+      </IntlProvider>
+    </Fragment>
+  );
 }
 
-export default App
+export default App;
