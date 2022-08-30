@@ -9,7 +9,8 @@ import tagsMessages from "./Tags.messages";
 const Tags = () => {
   const classes = useTagsStyle();
   const { tagsArray, onTagClick } = useTags();
-  const { tagFilter, myTeam, setMyTeam } = useChampionsContext();
+  const { tagFilter, myTeam, setMyTeam, setSelectionModel, selectedChampions } =
+    useChampionsContext();
 
   return (
     <Box marginX={7} marginBottom={7}>
@@ -39,7 +40,13 @@ const Tags = () => {
         className={cls(classes.tag, {
           [classes.selectedTag]: myTeam,
         })}
-        onClick={() => setMyTeam(!myTeam)}
+        onClick={() => {
+          setMyTeam((_prevMyTeam) => {
+            if (!_prevMyTeam)
+              setSelectionModel(selectedChampions.flatMap((_item) => _item.id));
+            return !_prevMyTeam;
+          });
+        }}
       />
     </Box>
   );
