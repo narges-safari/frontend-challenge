@@ -16,7 +16,12 @@ const ChampionsBoard = () => {
 
   const fullChampions = useCallback(
     (index: number) => (
-      <Box display={"flex"} flexDirection={"column"} alignItems={"center"}>
+      <Box
+        className={classes.avatarContainer}
+        display={"flex"}
+        flexDirection={"column"}
+        alignItems={"center"}
+      >
         <Avatar
           key={selectedChampions?.[index]?.id}
           className={classes.avatar}
