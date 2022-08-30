@@ -19,7 +19,7 @@ const CharactersTable: FC<ICharactersTableProps> = (props) => {
   return (
     <Box
       bgcolor={"White"}
-      height={351}
+      height={600}
       marginX={7}
       borderRadius={1}
       boxShadow={"0px 2px 4px 0px #00000040"}
@@ -34,8 +34,8 @@ const CharactersTable: FC<ICharactersTableProps> = (props) => {
               )
         }
         columns={charactersColumns}
-        pageSize={3}
-        rowsPerPageOptions={[3]}
+        pageSize={6}
+        rowsPerPageOptions={[6]}
         checkboxSelection
         rowHeight={80}
         disableColumnMenu={true}
